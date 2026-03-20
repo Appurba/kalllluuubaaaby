@@ -13,7 +13,7 @@ body {
   overflow: hidden;
 }
 
-/* Main Center */
+/* Center */
 .container {
   position: absolute;
   top: 50%;
@@ -45,18 +45,27 @@ button:hover {
   transform: scale(1.1);
 }
 
-/* Floating Hearts */
-.hearts span {
-  position: absolute;
-  animation: float 6s linear infinite;
-}
-
+/* Floating hearts */
 @keyframes float {
   0% { transform: translateY(0); opacity: 1; }
   100% { transform: translateY(-100vh); opacity: 0; }
 }
 
-/* Hidden Pages */
+/* Name pop animation */
+.namePop {
+  position: absolute;
+  color: #ff4d6d;
+  font-weight: bold;
+  animation: fadeUp 4s linear;
+  pointer-events: none;
+}
+
+@keyframes fadeUp {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-100px); opacity: 0; }
+}
+
+/* Hidden pages */
 .page {
   position: fixed;
   top: 0;
@@ -89,50 +98,49 @@ button:hover {
   <button onclick="openMemory()">Memories 💫</button>
 </div>
 
-<!-- 🔐 Password Page -->
+<!-- Password Page -->
 <div id="passwordPage" class="page">
   <h2>Enter Secret Word 💕</h2>
-  <input type="password" id="passInput" placeholder="Enter password">
+  <input type="password" id="passInput">
   <br><br>
   <button onclick="checkPassword()">Unlock</button>
 </div>
 
-<!-- 💌 LONG LOVE LETTER -->
+<!-- Love Letter -->
 <div id="letterPage" class="page">
   <h1>My Love ❤️</h1>
 
-  <p style="max-width:600px;margin:auto;line-height:1.6;font-size:18px;">
+  <p style="max-width:600px;margin:auto;line-height:1.7;font-size:18px;">
   From the moment you entered my life, everything changed.  
-  You became my happiness, my peace, and the reason behind my smile.  
+  You became my happiness, my peace, and my entire world.  
 
-  I know I hurt you, and I regret every second of it.  
-  Not a single day passes without me thinking about you.  
+  I know I hurt you… and I regret it more than anything.  
+  Every second without you feels empty.  
 
-  Your laughter, your eyes, your presence — everything about you means the world to me.  
-  I never wanted to lose you, and I still don’t.  
+  I miss your smile, your voice, your presence… everything.  
 
-  I promise to grow, to understand you better, and to love you in the way you truly deserve.  
-  Not just through words, but through actions every single day.  
+  You are not just someone I love —  
+  you are the reason my heart feels alive.  
 
-  If you give me one more chance,  
-  I will make sure you never feel this pain again.  
+  I promise to become better, to understand you,  
+  and to love you the way you truly deserve.  
 
-  You are my everything ❤️  
-  And I love you more than anything in this world.
+  If you give me one more chance…  
+  I will never let you feel this pain again.  
+
+  I love you forever ❤️
   </p>
 
   <br>
   <button onclick="closePage('letterPage')">Close</button>
 </div>
 
-<!-- 💫 MEMORY PAGE -->
+<!-- Memory Page -->
 <div id="memoryPage" class="page">
   <h1>Our Memories 💫</h1>
   <p>Every moment with you is my favorite ❤️</p>
   <button onclick="closePage('memoryPage')">Close</button>
 </div>
-
-<div class="hearts"></div>
 
 <audio autoplay loop>
   <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3">
@@ -141,7 +149,7 @@ button:hover {
 <script>
 const girlName = "Kalu";
 
-/* Text Setup */
+/* Text */
 document.getElementById("title").innerHTML = `I'm Sorry ${girlName} ❤️`;
 document.getElementById("question").innerHTML = `${girlName}, will you forgive me? 😔`;
 
@@ -169,14 +177,14 @@ function moveNo() {
   btn.style.top = Math.random()*90 + "%";
 }
 
-/* Password System */
+/* Password */
 function openPassword() {
   document.getElementById("passwordPage").style.display = "block";
 }
 
 function checkPassword() {
   const pass = document.getElementById("passInput").value;
-  if (pass === "22012026") {
+  if (pass === "love123") {
     document.getElementById("passwordPage").style.display = "none";
     document.getElementById("letterPage").style.display = "block";
   } else {
@@ -193,16 +201,35 @@ function closePage(id) {
   document.getElementById(id).style.display = "none";
 }
 
-/* Floating Hearts */
-const heartsContainer = document.querySelector('.hearts');
+/* 💕 LOTS OF HEARTS */
 setInterval(() => {
-  const heart = document.createElement('span');
-  heart.innerHTML = '❤️';
-  heart.style.left = Math.random() * 100 + 'vw';
-  heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
-  heartsContainer.appendChild(heart);
-  setTimeout(() => heart.remove(), 6000);
-}, 400);
+  for (let i = 0; i < 4; i++) {
+    const heart = document.createElement("div");
+    heart.innerHTML = "❤️";
+    heart.style.position = "absolute";
+    heart.style.left = Math.random()*100 + "vw";
+    heart.style.fontSize = (Math.random()*25 + 15) + "px";
+    heart.style.animation = "float 5s linear";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 5000);
+  }
+}, 200);
+
+/* 💖 NAME POP EVERYWHERE */
+setInterval(() => {
+  const name = document.createElement("div");
+  name.className = "namePop";
+  name.innerHTML = girlName + " ❤️";
+
+  name.style.left = Math.random()*100 + "vw";
+  name.style.top = Math.random()*100 + "vh";
+  name.style.fontSize = (Math.random()*20 + 15) + "px";
+
+  document.body.appendChild(name);
+
+  setTimeout(() => name.remove(), 4000);
+}, 300);
 </script>
 
 </body>
