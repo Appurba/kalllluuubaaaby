@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>I'm Sorry ❤️</title>
+
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: #ffdde1;
+  overflow: hidden;
+  text-align: center;
+}
+
+/* Main Container */
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Image */
+img {
+  width: 250px;
+  border-radius: 15px;
+}
+
+/* Text */
+h1, h2, p {
+  color: #333;
+}
+
+/* Buttons */
+button {
+  padding: 10px 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 10px;
+  background: #ff4d6d;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #e60039;
+}
+
+/* Floating Hearts */
+.hearts span {
+  position: absolute;
+  animation: float 6s linear infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(-100vh); opacity: 0; }
+}
+
+/* Hidden Love Letter Page */
+#letterPage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  display: none;
+  padding: 30px;
+  overflow-y: auto;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1 id="title"></h1>
+
+  <!-- Image -->
+  <img src="https://i.postimg.cc/DmksNzXF/Whats-App-Image-2026-03-21-at-00-20-33.jpg">
+
+  <p id="message"></p>
+  <h2 id="question"></h2>
+
+  <button onclick="yesClicked()">Yes ❤️</button>
+  <button id="noBtn" onmouseover="moveNo()">No 😢</button>
+
+  <br>
+  <button onclick="unlock()">Private Message 🔒</button>
+</div>
+
+<!-- Hidden Love Letter -->
+<div id="letterPage">
+  <h1>My Love ❤️</h1>
+  <p>
+    I know I made mistakes, and I regret every moment that hurt you.  
+    You are not just someone special—you are everything to me.  
+    Every smile of yours is my happiness, and every tear of yours breaks me.  
+    I promise to be better, to love you more, and to never take you for granted again.  
+    Please foregive mee kaluu… ❤️  
+  </p>
+  <button onclick="closeLetter()">Close</button>
+</div>
+
+<div class="hearts"></div>
+
+<!-- Music -->
+<audio autoplay loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const girlName = "Kalu";
+
+document.getElementById("title").innerHTML = `I'm Sorry ${girlName} ❤️`;
+document.getElementById("question").innerHTML = `${girlName}, will you forgive me? 😔`;
+
+const text = `Hey ${girlName}, I know I hurt you and I'm truly sorry. You mean everything to me. Every moment without you feels empty. Please give me one chance to make things right. I love you so much ❤️`;
+
+let i = 0;
+function typeWriter() {
+  if (i < text.length) {
+    document.getElementById("message").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typeWriter, 40);
+  }
+}
+typeWriter();
+
+function yesClicked() {
+  alert(`I love you so much ${girlName} ❤️ You made me the happiest person 😭`);
+}
+
+function moveNo() {
+  const btn = document.getElementById("noBtn");
+  const x = Math.random() * (window.innerWidth - 100);
+  const y = Math.random() * (window.innerHeight - 50);
+  btn.style.position = "absolute";
+  btn.style.left = x + "px";
+  btn.style.top = y + "px";
+}
+
+function unlock() {
+  const pass = prompt("Enter our special word 💕");
+  if (pass === "love") {
+    document.getElementById("letterPage").style.display = "block";
+  } else {
+    alert(`Wrong password 😢 But I still love you ${girlName} ❤️`);
+  }
+}
+
+function closeLetter() {
+  document.getElementById("letterPage").style.display = "none";
+}
+
+/* Floating Hearts */
+const heartsContainer = document.querySelector('.hearts');
+setInterval(() => {
+  const heart = document.createElement('span');
+  heart.innerHTML = '❤️';
+  heart.style.left = Math.random() * 100 + 'vw';
+  heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+  heartsContainer.appendChild(heart);
+  setTimeout(() => heart.remove(), 6000);
+}, 500);
+</script>
+
+</body>
+</html>
